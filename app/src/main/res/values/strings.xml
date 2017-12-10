@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Restaurant Reservation</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
 </resources>
