@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_text_title">22sp</dimen>
+    <dimen name="padding_home_root">10dp</dimen>
+    <dimen name="padding_home_texts">12dp</dimen>
+    <dimen name="margin_title">50dp</dimen>
+    <dimen name="margin_form">24dp</dimen>
+</resources>

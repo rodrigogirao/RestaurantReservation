@@ -5,4 +5,10 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
+    <string name="registration">Registration</string>
+    <string name="user_info">User Info</string>
+    <string name="first_name_value">First Name: %1$s</string>
+    <string name="last_name_value">Last Name: %1$s</string>
+    <string name="username_value">Username: %1$s</string>
+    <string name="edit_user">Image edit user information</string>
 </resources>

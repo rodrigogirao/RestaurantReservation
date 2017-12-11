@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    tools:showIn="@layout/activity_new_account">
+
+    <EditText
+        android:id="@+id/edit_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_form"
+        android:layout_marginStart="@dimen/margin_form"
+        android:hint="@string/username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_username"
+        android:layout_marginEnd="@dimen/margin_form"
+        android:layout_marginStart="@dimen/margin_form"
+        android:layout_marginTop="16dp"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_create_or_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_password"
+        android:layout_marginEnd="@dimen/margin_form"
+        android:layout_marginStart="@dimen/margin_form"
+        android:layout_marginTop="@dimen/margin_form"
+        android:background="@color/colorAccent"
+        android:text="@string/create_account"
+        android:textColor="@color/colorTextButton" />
+
+</RelativeLayout>

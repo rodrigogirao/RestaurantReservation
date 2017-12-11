@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
     TextView editPassword;
     @BindView(R.id.txt_create_account)
     TextView txtCreateAccount;
+    @BindView(R.id.btn_create_or_login)
+    Button btnLogin;
     ILoginPresenter presenter;
 
     @Override
@@ -42,11 +45,12 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
             Intent intent = new Intent(this, NewAccountActivity.class);
             startActivity(intent);
         });
+        btnLogin.setText(R.string.login);
 
         presenter = new LoginPresenter(this, new UserRepository());
     }
 
-    @OnClick(R.id.button_login)
+    @OnClick(R.id.btn_create_or_login)
     public void login() {
         presenter.doLogin(editUsername.getText().toString(), editPassword.getText().toString());
     }

@@ -38,7 +38,7 @@ public class NewAccountActivity extends AppCompatActivity implements INewAccount
         setupDependenceInjection();
     }
 
-    @OnClick(R.id.btn_create_account)
+    @OnClick(R.id.btn_create_or_login)
     public void onButtonCreateAccountClicked() {
         presenter.createNewUser(editUsername.getText().toString(), editPassword.getText().toString());
     }

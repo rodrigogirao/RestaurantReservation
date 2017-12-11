@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.view.activity.LoginActivity">
+        <activity android:name=".presentation.view.activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".presentation.view.activity.NewAccountActivity" />
+        <activity android:name=".presentation.view.activity.NewAccountActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".presentation.view.activity.HomeActivity" />
         <activity android:name=".presentation.view.activity.SplashActivity"
             android:theme="@style/SplashTheme">
