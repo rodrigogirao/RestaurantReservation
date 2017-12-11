@@ -1,10 +1,10 @@
-package com.leticia.restaurantreservation.domain.model;
+package com.leticia.restaurantreservation.infrastructure.service.response;
 
 /**
  * Created by leticia on 12/10/17.
  */
 
-public class LoginResponse {
+public class ErrorResponse {
 
     private String message;
 
