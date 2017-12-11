@@ -56,6 +56,7 @@ public class NewAccountActivity extends AppCompatActivity implements INewAccount
     @Override
     public void goToHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

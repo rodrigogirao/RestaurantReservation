@@ -12,14 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.view.activity.LoginActivity">
+        </activity>
+        <activity android:name=".presentation.view.activity.NewAccountActivity" />
+        <activity android:name=".presentation.view.activity.HomeActivity" />
+        <activity android:name=".presentation.view.activity.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.activity.NewAccountActivity" />
-        <activity android:name=".presentation.view.activity.HomeActivity"></activity>
     </application>
 
 </manifest>

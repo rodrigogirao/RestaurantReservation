@@ -20,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
+    private static final int SERVER_ERROR = 500;
     private static final String BASE_URL = "http://104.131.189.211:8085/";
     private static Retrofit retrofit;
     private static Converter<ResponseBody, ErrorResponse> errorConverter;
@@ -34,12 +35,20 @@ public class RetrofitService {
     public static String convertThrowableToHttpMessage(Throwable throwable) throws IOException {
         if (throwable instanceof HttpException) {
             ResponseBody responseBody = ((HttpException) throwable).response().errorBody();
-            if (errorConverter != null) {
+            if (errorConverter != null && responseBody != null) {
                 ErrorResponse error = errorConverter.convert(responseBody);
                 return error.getMessage();
             }
         }
         return "";
+    }
+
+    public static boolean isHttp500Error(Throwable throwable) {
+        if (throwable instanceof HttpException) {
+            HttpException httpException = (HttpException) throwable;
+            return httpException.response().code() == SERVER_ERROR;
+        }
+        return false;
     }
 
     private static Retrofit createRetrofit() {

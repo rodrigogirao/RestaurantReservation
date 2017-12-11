@@ -8,26 +8,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leticia.restaurantreservation.R;
-import com.leticia.restaurantreservation.presentation.di.component.DaggerLoginComponent;
-import com.leticia.restaurantreservation.presentation.di.module.LoginModule;
-import com.leticia.restaurantreservation.presentation.di.module.UserModule;
+import com.leticia.restaurantreservation.infrastructure.repository.UserRepository;
 import com.leticia.restaurantreservation.presentation.mvpview.LoginMvpView;
 import com.leticia.restaurantreservation.presentation.presenter.ILoginPresenter;
-
-import javax.inject.Inject;
+import com.leticia.restaurantreservation.presentation.presenter.LoginPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginMvpView {
 
     public static final String FIRST_NAME_KEY = "first-name-key";
     public static final String LAST_NAME_KEY = "last-name-key";
     public static final String USERNAME_KEY = "username-key";
+    @BindView(R.id.edit_username)
+    TextView editUsername;
+    @BindView(R.id.edit_password)
+    TextView editPassword;
     @BindView(R.id.txt_create_account)
     TextView txtCreateAccount;
-    @Inject
-    ILoginPresenter loginPresenter;
+    ILoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,16 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
             startActivity(intent);
         });
 
-        loginPresenter.checkIfTokenIsValid();
+        presenter = new LoginPresenter(this, new UserRepository());
+    }
+
+    @OnClick(R.id.button_login)
+    public void login() {
+        presenter.doLogin(editUsername.getText().toString(), editPassword.getText().toString());
+    }
+
+    private void setupDependenceInjection() {
+
     }
 
     @Override
@@ -51,24 +61,14 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
     }
 
     @Override
-    public void goToHomeActivity(String firstName, String lastName, String username) {
+    public void goToHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra(FIRST_NAME_KEY, firstName);
-        intent.putExtra(LAST_NAME_KEY, lastName);
-        intent.putExtra(USERNAME_KEY, username);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void setupDependenceInjection() {
-        DaggerLoginComponent.builder()
-                .loginModule(new LoginModule(this))
-                .userModule(new UserModule())
-                .build()
-                .inject(this);
     }
 }
