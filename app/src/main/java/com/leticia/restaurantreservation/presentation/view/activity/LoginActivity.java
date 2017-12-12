@@ -9,10 +9,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leticia.restaurantreservation.R;
-import com.leticia.restaurantreservation.infrastructure.repository.UserRepository;
+import com.leticia.restaurantreservation.presentation.di.component.DaggerLoginComponent;
+import com.leticia.restaurantreservation.presentation.di.module.LoginModule;
+import com.leticia.restaurantreservation.presentation.di.module.UserModule;
 import com.leticia.restaurantreservation.presentation.mvpview.LoginMvpView;
 import com.leticia.restaurantreservation.presentation.presenter.ILoginPresenter;
-import com.leticia.restaurantreservation.presentation.presenter.LoginPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
     TextView txtCreateAccount;
     @BindView(R.id.btn_create_or_login)
     Button btnLogin;
+    @Inject
     ILoginPresenter presenter;
 
     @Override
@@ -46,8 +50,6 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
             startActivity(intent);
         });
         btnLogin.setText(R.string.login);
-
-        presenter = new LoginPresenter(this, new UserRepository());
     }
 
     @OnClick(R.id.btn_create_or_login)
@@ -70,6 +72,10 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
     }
 
     private void setupDependenceInjection() {
-
+        DaggerLoginComponent.builder()
+                .loginModule(new LoginModule(this))
+                .userModule(new UserModule())
+                .build()
+                .inject(this);
     }
 }

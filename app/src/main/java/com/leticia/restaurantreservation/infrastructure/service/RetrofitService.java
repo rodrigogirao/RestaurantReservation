@@ -2,7 +2,7 @@ package com.leticia.restaurantreservation.infrastructure.service;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.leticia.restaurantreservation.infrastructure.service.response.ErrorResponse;
+import com.leticia.restaurantreservation.infrastructure.service.response.MessageResponse;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -23,7 +23,7 @@ public class RetrofitService {
     private static final int SERVER_ERROR = 500;
     private static final String BASE_URL = "http://104.131.189.211:8085/";
     private static Retrofit retrofit;
-    private static Converter<ResponseBody, ErrorResponse> errorConverter;
+    private static Converter<ResponseBody, MessageResponse> errorConverter;
 
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
@@ -36,11 +36,11 @@ public class RetrofitService {
         if (throwable instanceof HttpException) {
             ResponseBody responseBody = ((HttpException) throwable).response().errorBody();
             if (errorConverter != null && responseBody != null) {
-                ErrorResponse error = errorConverter.convert(responseBody);
+                MessageResponse error = errorConverter.convert(responseBody);
                 return error.getMessage();
             }
         }
-        return "";
+        return throwable.getMessage();
     }
 
     public static boolean isHttp500Error(Throwable throwable) {
@@ -66,7 +66,7 @@ public class RetrofitService {
                 .build();
 
         errorConverter = retrofit
-                .responseBodyConverter(ErrorResponse.class, new Annotation[0]);
+                .responseBodyConverter(MessageResponse.class, new Annotation[0]);
         return retrofit;
     }
 

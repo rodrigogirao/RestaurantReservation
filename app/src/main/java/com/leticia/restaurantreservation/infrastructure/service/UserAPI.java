@@ -4,6 +4,7 @@ import com.leticia.restaurantreservation.infrastructure.service.response.Authent
 import com.leticia.restaurantreservation.infrastructure.service.response.LoginResponse;
 import com.leticia.restaurantreservation.infrastructure.service.request.TokenRequest;
 import com.leticia.restaurantreservation.domain.model.User;
+import com.leticia.restaurantreservation.infrastructure.service.response.MessageResponse;
 import com.leticia.restaurantreservation.infrastructure.service.response.UserDetailsResponse;
 
 import io.reactivex.Observable;
@@ -24,4 +25,7 @@ public interface UserAPI {
 
     @POST("/user/getDetails")
     Observable<UserDetailsResponse> retrieveUserInformation(@Body TokenRequest tokenRequest);
+
+    @POST("/user/update")
+    Observable<MessageResponse> updateUserInfo(@Body User user);
 }

@@ -4,6 +4,7 @@ import com.leticia.restaurantreservation.infrastructure.service.response.Authent
 import com.leticia.restaurantreservation.infrastructure.service.response.LoginResponse;
 import com.leticia.restaurantreservation.infrastructure.service.request.TokenRequest;
 import com.leticia.restaurantreservation.domain.model.User;
+import com.leticia.restaurantreservation.infrastructure.service.response.MessageResponse;
 import com.leticia.restaurantreservation.infrastructure.service.response.UserDetailsResponse;
 import com.leticia.restaurantreservation.domain.repository.IUserRepository;
 import com.leticia.restaurantreservation.infrastructure.service.RetrofitService;
@@ -41,6 +42,14 @@ public class UserRepository implements IUserRepository {
         Retrofit retrofit = RetrofitService.getRetrofit();
         UserAPI userAPI = retrofit.create(UserAPI.class);
         return userAPI.retrieveUserInformation(tokenRequest).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<MessageResponse> updateUserInfo(User user) {
+        Retrofit retrofit = RetrofitService.getRetrofit();
+        UserAPI userAPI = retrofit.create(UserAPI.class);
+        return userAPI.updateUserInfo(user).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

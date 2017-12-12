@@ -4,7 +4,7 @@ package com.leticia.restaurantreservation.infrastructure.service.response;
  * Created by leticia on 12/10/17.
  */
 
-public class ErrorResponse {
+public class MessageResponse {
 
     private String message;
 
