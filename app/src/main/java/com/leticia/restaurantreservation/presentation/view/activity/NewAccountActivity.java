@@ -1,7 +1,6 @@
 package com.leticia.restaurantreservation.presentation.view.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
@@ -49,15 +48,12 @@ public class NewAccountActivity extends AppCompatActivity implements INewAccount
     }
 
     @Override
-    public Context getContext() {
-        return this;
+    public void goToLoginActivity() {
     }
 
     @Override
-    public void goToHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+    public Context getContext() {
+        return this;
     }
 
     private void setupDependenceInjection() {

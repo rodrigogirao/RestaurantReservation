@@ -14,10 +14,6 @@ import com.leticia.restaurantreservation.presentation.presenter.ISplashPresenter
 
 import javax.inject.Inject;
 
-import static com.leticia.restaurantreservation.presentation.view.activity.LoginActivity.FIRST_NAME_KEY;
-import static com.leticia.restaurantreservation.presentation.view.activity.LoginActivity.LAST_NAME_KEY;
-import static com.leticia.restaurantreservation.presentation.view.activity.LoginActivity.USERNAME_KEY;
-
 public class SplashActivity extends AppCompatActivity implements SplashMvpView {
 
     @Inject
@@ -26,7 +22,6 @@ public class SplashActivity extends AppCompatActivity implements SplashMvpView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setupDependenceInjection();
 
         presenter.checkIfTokenIsValid();
@@ -35,16 +30,6 @@ public class SplashActivity extends AppCompatActivity implements SplashMvpView {
     @Override
     public Context getContext() {
         return this;
-    }
-
-    @Override
-    public void goToHomeActivity(String firstName, String lastName, String username) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra(FIRST_NAME_KEY, firstName);
-        intent.putExtra(LAST_NAME_KEY, lastName);
-        intent.putExtra(USERNAME_KEY, username);
-        startActivity(intent);
     }
 
     @Override

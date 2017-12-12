@@ -6,10 +6,8 @@ import android.content.Context;
  * Created by leticia on 12/10/17.
  */
 
-public interface LoginMvpView {
+public interface LoginMvpView extends IUserMvpView {
     Context getContext();
-
-    void goToHomeActivity();
 
     void showMessage(String message);
 }

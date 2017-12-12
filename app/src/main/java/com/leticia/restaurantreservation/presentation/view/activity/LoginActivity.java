@@ -55,24 +55,21 @@ public class LoginActivity extends AppCompatActivity implements LoginMvpView {
         presenter.doLogin(editUsername.getText().toString(), editPassword.getText().toString());
     }
 
-    private void setupDependenceInjection() {
-
-    }
-
     @Override
     public Context getContext() {
         return this;
     }
 
     @Override
-    public void goToHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    public void goToLoginActivity() {
+    }
+
+    private void setupDependenceInjection() {
+
     }
 }
